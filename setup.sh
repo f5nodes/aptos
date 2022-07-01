@@ -9,7 +9,7 @@ aptos -V
 
 curl -fsSL https://get.docker.com -o get-docker.sh
 sh get-docker.sh
-apt-get install docker-compose
+apt-get install docker-compose -y
 docker -v
 docker-compose --version
 
@@ -33,7 +33,7 @@ aptos genesis set-validator-configuration \
 echo "---
 root_key: "F22409A93D1CD12D2FC92B5F8EB84CDCD24C348E32B3E7A720F3D2E288E63394"
 users:
-  - "$read_name"
+  - \"$read_name\"
 chain_id: 40
 min_stake: 0
 max_stake: 100000
