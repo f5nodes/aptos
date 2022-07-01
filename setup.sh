@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# export username="your name here" >> $HOME/.bash_profile
+# export serverip="your ip here" >> $HOME/.bash_profile
+
+. $HOME/.bash_profile
 sudo apt update && sudo apt install unzip -y
 wget -qO aptos-cli.zip https://github.com/aptos-labs/aptos-core/releases/download/aptos-cli-0.2.0/aptos-cli-0.2.0-Ubuntu-x86_64.zip
 unzip -o aptos-cli.zip
@@ -20,20 +24,17 @@ wget https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose
 wget https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/aptos-node/validator.yaml
 aptos genesis generate-keys --output-dir ~/$WORKSPACE
 
-read -p "Your username: " $read_name
-read -p "Your IP: " $read_ip
-
 cd ~/$WORKSPACE
 aptos genesis set-validator-configuration \
     --keys-dir ~/$WORKSPACE --local-repository-dir ~/$WORKSPACE \
-    --username $read_name \
-    --validator-host $read_ip:6180 \
-    --full-node-host $read_ip:6182
+    --username $username \
+    --validator-host $serverip:6180 \
+    --full-node-host $serverip:6182
 
 echo "---
 root_key: "F22409A93D1CD12D2FC92B5F8EB84CDCD24C348E32B3E7A720F3D2E288E63394"
 users:
-  - \"$read_name\"
+  - \"$username\"
 chain_id: 40
 min_stake: 0
 max_stake: 100000
