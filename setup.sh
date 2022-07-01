@@ -1,6 +1,6 @@
 #!/bin/bash
 
-apt install unzip -y
+sudo apt update && sudo apt install unzip -y
 wget -qO aptos-cli.zip https://github.com/aptos-labs/aptos-core/releases/download/aptos-cli-0.2.0/aptos-cli-0.2.0-Ubuntu-x86_64.zip
 unzip -o aptos-cli.zip
 chmod +x aptos
